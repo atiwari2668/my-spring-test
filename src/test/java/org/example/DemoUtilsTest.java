@@ -55,5 +55,18 @@ public class DemoUtilsTest {
         assertLinesMatch(expect, demoUtils.getColor(), "lines should match");
     }
 
+    
+    @DisplayName("it should not or should throw exception")
+    @Test
+    void testThrowOrNotThrowException () {
+        assertThrows(Exception.class, ()-> demoUtils.throwException(-1));
+        assertDoesNotThrow(()-> demoUtils.throwException(5));
+    }
+
+    @Test
+    void testTimeoutPreemptively () {
+        assertTimeoutPreemptively(Duration.ofSeconds(2000), ()-> demoUtils.checkTimeout());
+    }
+
 
 }
